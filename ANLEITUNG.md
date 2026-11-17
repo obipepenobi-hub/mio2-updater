@@ -39,7 +39,7 @@ Für die Claude-Sitzung, die an Mio² arbeitet, und für Liam. Stand: 17.11.2026
    nicht debuggable, Signatur gültig **und** exakt der Schlüssel aus der Tabelle oben, Version neuer als das
    letzte Release. Dann legt es `SHA256SUMS.txt` und `android-update.json` an, erstellt das Release `vX.Y.Z`
    und legt die APK als `mio2-X.Y.Z.apk` in `liams-appstore/incoming-apks/`.
-   Mit `--dry-run` wird nur geprüft, mit `--appstore` weggelassen bleibt der Appstore unberührt.
+   `--dry-run` prüft nur und veröffentlicht nichts; ohne `--appstore` bleibt der Appstore unberührt.
 3. Danach der Appstore-Sitzung sagen: **„Schau im apk-Ordner nach, es gibt ein Update.“**
 
 Voraussetzungen: Python 3.8+, Android-SDK build-tools, git, `gh auth login` (alles auf Liams PC vorhanden).
@@ -140,6 +140,10 @@ Darum braucht Mio² einmalig einen Eintrag und damit eine neue Store-Version. Da
 
 ## 8. Stand
 
-Erledigt: Update-Repo angelegt, Release-Skript getestet (Trockenlauf mit der 1.0.4-APK), Schlüssel geprüft
-(das Zertifikat im Keystore ist dasselbe wie in der veröffentlichten APK) und doppelt gesichert.
-Offen: Punkte aus der Checkliste.
+Erledigt: Update-Repo angelegt. Release-Skript getestet: Trockenlauf mit der echten 1.0.4-APK, die Fehlerfälle
+(falscher Schlüssel, fremde, Debug- und unsignierte APK, Version nicht neuer, Datei fehlt), ein echtes Release als
+Entwurf (danach wieder gelöscht, das Repo hat noch kein Release) und der Appstore-Upload gegen ein lokales Test-Repo,
+auch wenn parallel jemand anderes pusht. Schlüssel geprüft (das Zertifikat im Keystore ist dasselbe wie in der
+veröffentlichten APK) und doppelt gesichert.
+Offen: Punkte aus der Checkliste. Nicht getestet: der Updater in der App selbst (gibt es noch nicht in dieser Form)
+und die Installation auf einem Handy.
